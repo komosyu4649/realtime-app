@@ -1,6 +1,6 @@
 import { FC, FormEvent, useState } from 'react'
 import { ShieldCheckIcon } from '@heroicons/react/solid'
-import { UseMutateAuth } from '../hooks/UseMutateAuth'
+import { UseMutateAuth } from '../hooks/useMutateAuth'
 
 export const Auth: FC = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -48,6 +48,20 @@ export const Auth: FC = () => {
             }}
           />
         </div>
+        <div className="my-6 flex items-center justify-center text-sm">
+          <span
+            className="cursor-pointer font-medium hover:text-indigo-500"
+            onClick={() => setIsLogin(!isLogin)}
+          >
+            change mode ?
+          </span>
+        </div>
+        <button
+          className="flex w-full justify-center rounded-md bg-indigo-600 py-2 px-4 text-sm text-white"
+          type="submit"
+        >
+          {isLogin ? 'login' : 'register'}
+        </button>
       </form>
     </>
   )
