@@ -1,6 +1,6 @@
-import { FC, FormEvent, useState } from 'react'
+import { useState, FormEvent, FC } from 'react'
 import { ShieldCheckIcon } from '@heroicons/react/solid'
-import { UseMutateAuth } from '../hooks/useMutateAuth'
+import { useMutateAuth } from '../hooks/useMutateAuth'
 
 export const Auth: FC = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -11,7 +11,7 @@ export const Auth: FC = () => {
     setPassword,
     loginMutation,
     registerMutation,
-  } = UseMutateAuth()
+  } = useMutateAuth()
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (isLogin) {
@@ -20,28 +20,29 @@ export const Auth: FC = () => {
       registerMutation.mutate()
     }
   }
+
   return (
     <>
       <ShieldCheckIcon className="mb-8 h-12 w-12 text-blue-500" />
       <form onSubmit={handleSubmit}>
-        <div className="">
+        <div>
           <input
             type="text"
             required
             className="my-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
-            placeholder="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
             }}
           />
         </div>
-        <div className="">
+        <div>
           <input
             type="password"
             required
             className="my-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value)
@@ -50,17 +51,17 @@ export const Auth: FC = () => {
         </div>
         <div className="my-6 flex items-center justify-center text-sm">
           <span
-            className="cursor-pointer font-medium hover:text-indigo-500"
             onClick={() => setIsLogin(!isLogin)}
+            className="cursor-pointer font-medium hover:text-indigo-500"
           >
             change mode ?
           </span>
         </div>
         <button
-          className="flex w-full justify-center rounded-md bg-indigo-600 py-2 px-4 text-sm text-white"
           type="submit"
+          className="flex w-full justify-center rounded-md bg-indigo-600 py-2 px-4 text-sm text-white"
         >
-          {isLogin ? 'login' : 'register'}
+          {isLogin ? 'Login' : 'Register'}
         </button>
       </form>
     </>

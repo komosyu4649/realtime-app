@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { supabase } from '../utils/supabase'
 
-export const UseMutateAuth = () => {
+export const useMutateAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const reset = () => {
