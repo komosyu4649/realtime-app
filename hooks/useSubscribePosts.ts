@@ -24,7 +24,7 @@ export const useSubscribePosts = () => {
               created_at: payload.new.created_at,
               title: payload.new.title,
               post_url: payload.new.post_url,
-              url_id: payload.new.url_id,
+              user_id: payload.new.user_id,
             },
           ]
         )
@@ -43,7 +43,7 @@ export const useSubscribePosts = () => {
                   created_at: payload.new.created_at,
                   title: payload.new.title,
                   post_url: payload.new.post_url,
-                  url_id: payload.new.url_id,
+                  user_id: payload.new.user_id,
                 }
               : post
           )

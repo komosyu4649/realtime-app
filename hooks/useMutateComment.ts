@@ -36,7 +36,7 @@ export const useMutateComment = () => {
     }
   )
 
-  const deleteCommebtMutation = useMutation(
+  const deleteCommentMutation = useMutation(
     async (id: string) => {
       const { data, error } = await supabase
         .from('comment')
@@ -53,5 +53,5 @@ export const useMutateComment = () => {
       },
     }
   )
-  return { createCommentMutation, updateCommentMutation, deleteCommebtMutation }
+  return { createCommentMutation, updateCommentMutation, deleteCommentMutation }
 }
