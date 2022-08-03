@@ -55,7 +55,7 @@ export const useSubscribeComments = (postId: string) => {
         )
       })
       .on('DELETE', (payload: SupabaseRealtimePayload<Comment>) => {
-        let previousComments = useQueryClient.getQueryData<Comment[]>([
+        let previousComments = queryClient.getQueryData<Comment[]>([
           'comments',
           postId,
         ])

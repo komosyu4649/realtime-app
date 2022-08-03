@@ -5,10 +5,10 @@ import { Comment } from '../types'
 export const useQueryComments = (postId: string) => {
   const getComments = async () => {
     const { data, error } = await supabase
-      .from('comment')
+      .from('comments')
       .select('*')
       .eq('post_id', postId)
-      .order('created_id', { ascending: true })
+      .order('created_at', { ascending: true })
 
     if (error) {
       throw new Error(error.message)
@@ -16,7 +16,7 @@ export const useQueryComments = (postId: string) => {
     return data
   }
   return useQuery<Comment[], Error>({
-    queryKey: ['comment', postId],
+    queryKey: ['comments', postId],
     queryFn: getComments,
     staleTime: Infinity,
   })
