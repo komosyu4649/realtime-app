@@ -49,7 +49,7 @@ const useStore = create<State>((set) => ({
     }),
   resetEditedPost: () =>
     set({
-      EditedPost: { id: '', title: '', post_url: '' },
+      editedPost: { id: '', title: '', post_url: '' },
     }),
 }))
 export default useStore

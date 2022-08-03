@@ -30,7 +30,7 @@ export const PostFormMemo: FC = () => {
       await updatePostMutation.mutateAsync({
         id: editedPost.id,
         title: editedPost.title,
-        post_url: editedPost.url,
+        post_url: editedPost.post_url,
       })
       setFullUrl('')
     }

@@ -4,7 +4,6 @@ import { SupabaseRealtimePayload } from '@supabase/supabase-js'
 import { supabase } from '../utils/supabase'
 import { Comment } from '../types'
 
-//
 export const useSubscribeComments = (postId: string) => {
   const queryClient = useQueryClient()
   useEffect(() => {

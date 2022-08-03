@@ -18,13 +18,13 @@ export const useQueryProfile = () => {
     if (error && status === 406) {
       createProfileMutation.mutate({
         id: session?.user?.id,
-        username: session?.useer?.email,
+        username: session?.user?.email,
         favorites: '',
         avatar_url: '',
       })
       update({
         ...editedProfile,
-        username: session?.username?.email,
+        username: session?.user?.email,
       })
     }
     if (error && status !== 406) {

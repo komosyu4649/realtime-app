@@ -7,7 +7,7 @@ export const useUploadPostImg = () => {
   const editedPost = useStore((state) => state.editedPost)
   const updatePost = useStore((state) => state.updateEditedPost)
   const useMutateUploadPostImg = useMutation(
-    async (e: ChangeEvent<HTMLElement>) => {
+    async (e: ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files || e.target.files.length === 0) {
         throw new Error('please select the img file')
       }

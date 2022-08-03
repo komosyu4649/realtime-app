@@ -7,7 +7,7 @@ export const useUploadAvatarImg = () => {
   const editedProfile = useStore((state) => state.editedProfile)
   const updateProfile = useStore((state) => state.updateEditedProfile)
   const useMutateUploadAvatarImg = useMutation(
-    async (e: ChangeEvent<HTMLElement>) => {
+    async (e: ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files || e.target.files.length === 0) {
         throw new Error('please select the img file')
       }

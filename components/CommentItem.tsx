@@ -1,5 +1,5 @@
 import { FC, Dispatch, SetStateAction, memo } from 'react'
-import { Image } from 'next/image'
+import Image from 'next/image'
 import {
   PencilAltIcon,
   TrashIcon,
@@ -27,7 +27,7 @@ export const CommentItemMemo: FC<Props> = ({
   const session = useStore((state) => state.session)
   const { data } = useQueryAvatar(user_id)
   const { deleteCommentMutation } = useMutateComment()
-  const { fullUrl: avatarUrl } = useDownloadUrl(data?.avatarUrl, 'avatars')
+  const { fullUrl: avatarUrl } = useDownloadUrl(data?.avatar_url, 'avatars')
 
   return (
     <li className="my-3 flex items-center justify-between">

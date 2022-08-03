@@ -1,5 +1,5 @@
 import { FC, useState, memo } from 'react'
-import { editedComment } from '../types'
+import { EditedComment } from '../types'
 import { useQueryComments } from '../hooks/useQueryComments'
 import { useSubscribeComments } from '../hooks/useSubscribeComments'
 import { CommentItem } from './CommentItem'
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const CommentsMemo: FC<Props> = ({ postId }) => {
-  const [editedComment, setEditedComment] = useState<editedComment>({
+  const [editedComment, setEditedComment] = useState<EditedComment>({
     id: '',
     comment: '',
   })

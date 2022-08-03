@@ -10,7 +10,7 @@ export const useQueryPosts = () => {
       .order('created_at', { ascending: true })
 
     if (error) {
-      throw new Error(error.messagge)
+      throw new Error(error.message)
     }
     return data
   }
