@@ -1,13 +1,14 @@
 import { useMutation } from 'react-query'
-import useStore from '../store'
 import { supabase } from '../utils/supabase'
-import { Post, EditedPost } from '../types'
+import useStore from '../store'
+import { Notice, EditedNotice } from '../types'
 
-export const useMutatePost = () => {
-  const reset = useStore((state) => state.resetEditedPost)
-  const createPostMutation = useMutation(
-    async (post: Omit<Post, 'id' | 'created_at'>) => {
-      const { data, error } = await supabase.from('posts').insert(post)
+export const useMutateNotice = () => {
+  const reset = useStore((state) => state.resetEditedNotice)
+
+  const createNoticeMutation = useMutation(
+    async (notice: Omit<Notice, 'id' | 'created_at'>) => {
+      const { data, error } = await supabase.from('notices').insert(notice)
       if (error) throw new Error(error.message)
       return data
     },
@@ -21,12 +22,13 @@ export const useMutatePost = () => {
       },
     }
   )
-  const updatePostMutation = useMutation(
-    async (post: EditedPost) => {
+
+  const updateNoticeMutation = useMutation(
+    async (notice: EditedNotice) => {
       const { data, error } = await supabase
-        .from('posts')
-        .update({ title: post.title, post_url: post.post_url })
-        .eq('id', post.id)
+        .from('notices')
+        .update({ content: notice.content })
+        .eq('id', notice.id)
       if (error) throw new Error(error.message)
       return data
     },
@@ -40,9 +42,13 @@ export const useMutatePost = () => {
       },
     }
   )
-  const deletePostMutation = useMutation(
+
+  const deleteNoticeMutation = useMutation(
     async (id: string) => {
-      const { data, error } = await supabase.from('posts').delete().eq('id', id)
+      const { data, error } = await supabase
+        .from('notices')
+        .delete()
+        .eq('id', id)
       if (error) throw new Error(error.message)
       return data
     },
@@ -56,5 +62,6 @@ export const useMutatePost = () => {
       },
     }
   )
-  return { deletePostMutation, createPostMutation, updatePostMutation }
+
+  return { createNoticeMutation, updateNoticeMutation, deleteNoticeMutation }
 }

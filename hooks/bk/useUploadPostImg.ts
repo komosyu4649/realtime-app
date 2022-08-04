@@ -3,23 +3,23 @@ import { useMutation } from 'react-query'
 import { supabase } from '../utils/supabase'
 import useStore from '../store'
 
-export const useUploadAvatarImg = () => {
-  const editedProfile = useStore((state) => state.editedProfile)
-  const updateProfile = useStore((state) => state.updateEditedProfile)
-  const useMutateUploadAvatarImg = useMutation(
+export const useUploadPostImg = () => {
+  const editedPost = useStore((state) => state.editedPost)
+  const updatePost = useStore((state) => state.updateEditedPost)
+  const useMutateUploadPostImg = useMutation(
     async (e: ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files || e.target.files.length === 0) {
-        throw new Error('Please select the image file')
+        throw new Error('please select the img file')
       }
       const file = e.target.files[0]
       const fileExt = file.name.split('.').pop()
-      const fileName = `${Math.random()}.${fileExt}`
+      const fileName = `${Math.random()}${fileExt}`
       const filePath = `${fileName}`
       const { error } = await supabase.storage
-        .from('avatars')
+        .from('posts')
         .upload(filePath, file)
       if (error) throw new Error(error.message)
-      updateProfile({ ...editedProfile, avatar_url: filePath })
+      updatePost({ ...editedPost, post_url: filePath })
     },
     {
       onError: (err: any) => {
@@ -27,6 +27,5 @@ export const useUploadAvatarImg = () => {
       },
     }
   )
-
-  return { useMutateUploadAvatarImg }
+  return { useMutateUploadPostImg }
 }

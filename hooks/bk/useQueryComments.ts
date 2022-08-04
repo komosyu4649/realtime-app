@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { supabase } from '../utils/supabase'
-import { Comment } from '../types/'
+import { Comment } from '../types'
 
 export const useQueryComments = (postId: string) => {
   const getComments = async () => {

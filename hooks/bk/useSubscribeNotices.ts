@@ -34,7 +34,7 @@ export const useSubscribeNotices = () => {
         }
         queryClient.setQueryData(
           ['notices'],
-          previousNotices.map((notice) =>
+          previousNotices.map((notice) => {
             notice.id === payload.new.id
               ? {
                   id: payload.new.id,
@@ -43,7 +43,7 @@ export const useSubscribeNotices = () => {
                   user_id: payload.new.user_id,
                 }
               : notice
-          )
+          })
         )
       })
       .on('DELETE', (payload: SupabaseRealtimePayload<Notice>) => {

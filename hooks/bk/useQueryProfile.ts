@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { supabase } from '../utils/supabase'
 import useStore from '../store'
-import { Profile } from '../types/'
+import { Profile } from '../types'
 import { useMutateProfile } from '../hooks/useMutateProfile'
 
 export const useQueryProfile = () => {

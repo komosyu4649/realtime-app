@@ -25,6 +25,5 @@ export const useDownloadUrl = (
       download()
     }
   }, [filePath, bucketName])
-
   return { isLoading, fullUrl, setFullUrl }
 }

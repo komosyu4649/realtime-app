@@ -6,6 +6,7 @@ import { Post } from '../types'
 
 export const useSubscribePosts = () => {
   const queryClient = useQueryClient()
+
   useEffect(() => {
     const subsc = supabase
       .from('posts')

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { supabase } from '../utils/supabase'
-import { Post } from '../types'
+import { Post } from '../types/'
 
 export const useQueryPosts = () => {
   const getPosts = async () => {
