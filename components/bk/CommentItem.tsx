@@ -28,6 +28,7 @@ export const CommentItemMemo: FC<Props> = ({
   const { data } = useQueryAvatar(user_id)
   const { deleteCommentMutation } = useMutateComment()
   const { fullUrl: avatarUrl } = useDownloadUrl(data?.avatar_url, 'avatars')
+
   return (
     <li className="my-3 flex items-center justify-between">
       <div className="flex">
@@ -65,4 +66,5 @@ export const CommentItemMemo: FC<Props> = ({
     </li>
   )
 }
+
 export const CommentItem = memo(CommentItemMemo)

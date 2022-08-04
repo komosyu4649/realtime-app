@@ -7,12 +7,11 @@ import { PostForm } from './PostForm'
 export const Feed: FC = () => {
   const { data: posts } = useQueryPosts()
   useSubscribePosts()
-
   return (
     <>
-      <p className="mb-4 text-center">Feed</p>
+      <p className="mb-4 text-center">feed</p>
       <PostForm />
-      <ul data-testid="ul-post" className="my-5">
+      <ul className="my-5" data-testid="ul-post">
         {posts?.map((post) => (
           <PostItem
             key={post.id}

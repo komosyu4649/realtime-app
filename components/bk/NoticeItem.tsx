@@ -12,7 +12,6 @@ export const NoticeItemMemo: FC<Omit<Notice, 'created_at'>> = ({
   const session = useStore((state) => state.session)
   const update = useStore((state) => state.updateEditedNotice)
   const { deleteNoticeMutation } = useMutateNotice()
-
   return (
     <li className="my-3">
       <span>{content}</span>

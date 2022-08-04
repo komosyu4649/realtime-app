@@ -25,13 +25,15 @@ export const CommentFormMemo: FC<Props> = ({
         user_id: session?.user?.id,
         post_id: postId,
       })
-      setEditedComment({ id: '', comment: '' })
     } else {
       await updateCommentMutation.mutateAsync({
         id: editedComment.id,
         comment: editedComment.comment,
       })
-      setEditedComment({ id: '', comment: '' })
+      setEditedComment({
+        id: '',
+        comment: '',
+      })
     }
   }
   return (
@@ -40,7 +42,7 @@ export const CommentFormMemo: FC<Props> = ({
         <input
           type="text"
           className="my-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
-          placeholder="New comment ?"
+          placeholder="new comment ?"
           value={editedComment.comment}
           onChange={(e) =>
             setEditedComment({ ...editedComment, comment: e.target.value })
@@ -61,4 +63,5 @@ export const CommentFormMemo: FC<Props> = ({
     </form>
   )
 }
+
 export const CommentForm = memo(CommentFormMemo)

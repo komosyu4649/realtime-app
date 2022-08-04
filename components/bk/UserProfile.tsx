@@ -41,18 +41,18 @@ export const UserProfile: FC = () => {
           {format(new Date(profile.updated_at), 'yyyy-MM-dd HH:mm:ss')}
         </p>
       )}
-      <p className="mt-4">Username</p>
+      <p className="mt-4">username</p>
       <input
-        className="my-2 mx-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
         type="text"
-        placeholder="Username"
+        className="my-2 mx-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
+        placeholder="username"
         value={editedProfile.username || ''}
         onChange={(e) => update({ ...editedProfile, username: e.target.value })}
       />
-      <p>Favorites</p>
+      <p>favoerites</p>
       <input
-        className="my-2 mx-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
         type="text"
+        className="my-2 mx-2 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
         value={editedProfile.favorites || ''}
         onChange={(e) =>
           update({ ...editedProfile, favorites: e.target.value })
@@ -61,18 +61,18 @@ export const UserProfile: FC = () => {
       <button
         className={`my-5 rounded ${
           updateProfileMutation.isLoading || !editedProfile.username
-            ? 'bg-gray-400'
-            : 'bg-indigo-600'
+            ? `bg-gray-400`
+            : `bg-indigo-600`
         } px-3 py-2 text-sm font-medium text-white`}
         onClick={updateProfile}
         disabled={updateProfileMutation.isLoading || !editedProfile.username}
       >
-        {updateProfileMutation.isLoading ? 'Loading ...' : 'Update'}
+        {updateProfileMutation.isLoading ? 'loading ...' : 'update'}
       </button>
       {avatarUrl && (
         <Image
           src={avatarUrl}
-          alt="Avatar"
+          alt="avatar"
           className="rounded-full"
           width={150}
           height={150}
@@ -84,8 +84,8 @@ export const UserProfile: FC = () => {
           <CameraIcon className="my-3 h-7 w-7 cursor-pointer text-gray-500" />
         </label>
         <input
-          className="hidden"
           type="file"
+          className="hidden"
           id="avatar"
           accept="image/*"
           onChange={(e) => useMutateUploadAvatarImg.mutate(e)}

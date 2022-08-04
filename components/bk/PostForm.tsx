@@ -35,12 +35,13 @@ export const PostFormMemo: FC = () => {
       setFullUrl('')
     }
   }
+
   return (
     <form onSubmit={submitHandler}>
       <input
         type="text"
         className="my-1 rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none"
-        placeholder="New post ?"
+        placeholder="new post ?"
         value={editedPost.title}
         onChange={(e) => update({ ...editedPost, title: e.target.value })}
       />
@@ -52,17 +53,17 @@ export const PostFormMemo: FC = () => {
             useMutateUploadPostImg.isLoading || !editedPost.title
               ? 'bg-gray-300'
               : 'bg-indigo-600'
-          }  px-3 py-2 text-sm text-white`}
+          } px-3 py-2 text-sm text-white`}
           disabled={useMutateUploadPostImg.isLoading || !editedPost.title}
         >
-          {editedPost.id ? 'Update' : 'Create'}
+          {editedPost.id ? 'update' : 'create'}
         </button>
       </div>
       <div className="flex justify-center">
         {postUrl && (
           <Image
             src={postUrl}
-            alt="Image"
+            alt="image"
             className="rounded"
             width={150}
             height={150}
@@ -77,8 +78,8 @@ export const PostFormMemo: FC = () => {
           <CameraIcon className="mt-2 h-7 w-7 cursor-pointer text-gray-500" />
         </label>
         <input
-          className="hidden"
           type="file"
+          className="hidden"
           id="post"
           accept="image/*"
           onChange={async (e) => {
@@ -90,4 +91,5 @@ export const PostFormMemo: FC = () => {
     </form>
   )
 }
+
 export const PostForm = memo(PostFormMemo)

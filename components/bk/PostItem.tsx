@@ -26,6 +26,7 @@ export const PostItemMemo: FC<Omit<Post, 'created_at'>> = ({
   const session = useStore((state) => state.session)
   const update = useStore((state) => state.updateEditedPost)
   const { data } = useQueryAvatar(user_id)
+  console.log(user_id)
   const { deletePostMutation } = useMutatePost()
   const { fullUrl: avatarUrl, isLoading: isLoadingAvatar } = useDownloadUrl(
     data?.avatar_url,
@@ -36,9 +37,8 @@ export const PostItemMemo: FC<Omit<Post, 'created_at'>> = ({
     'posts'
   )
   return (
-    <>
-      <li className="w-80">
-        <div className="my-3 w-full border border-dashed border-gray-400" />
+    <li className="w-80">
+      <div className="my-3 w-full border border-dashed border-gray-400">
         <div className="flex items-center justify-between">
           <div className="flex">
             {avatarUrl ? (
@@ -58,7 +58,7 @@ export const PostItemMemo: FC<Omit<Post, 'created_at'>> = ({
             <div className="flex pr-4">
               <PencilAltIcon
                 data-testid="pencil-post"
-                className="mx-1 h-5 w-5 cursor-pointer text-blue-500"
+                className="curosor-pointer mx-1 h-5 w-5 text-blue-500"
                 onClick={() => {
                   update({
                     id: id,
@@ -69,7 +69,7 @@ export const PostItemMemo: FC<Omit<Post, 'created_at'>> = ({
               />
               <TrashIcon
                 data-testid="trash-post"
-                className="h-5 w-5 cursor-pointer text-blue-500"
+                className="curosor-pointer h-5 w-5 text-blue-500"
                 onClick={() => {
                   deletePostMutation.mutate(id)
                 }}
@@ -81,42 +81,43 @@ export const PostItemMemo: FC<Omit<Post, 'created_at'>> = ({
           {postUrl && (
             <Image
               src={postUrl}
-              alt="Image"
+              alt="img"
               className="rounded-lg"
               width={300}
               height={220}
             />
           )}
         </div>
-        <div className="my-3 flex justify-center">
-          {(isLoadingAvatar || isLoadingPost) && <Spinner />}
-        </div>
-        <ChatAlt2Icon
-          data-testid="open-comments"
-          className="ml-2 h-6 w-6 cursor-pointer text-blue-500"
-          onClick={() => setOpenComments(!openComments)}
-        />
-        {openComments && (
-          <ErrorBoundary
+      </div>
+      <div className="my-3 flex justify-center">
+        {(isLoadingAvatar || isLoadingPost) && <Spinner />}
+      </div>
+      <ChatAlt2Icon
+        data-testid="open-comments"
+        className="ml-2 h-6 w-6 cursor-pointer text-blue-500"
+        onClick={() => setOpenComments(!openComments)}
+      />
+      {openComments && (
+        <ErrorBoundary
+          fallback={
+            <ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />
+          }
+        >
+          <Suspense
             fallback={
-              <ExclamationCircleIcon className="my-5 h-10 w-10 text-pink-500" />
+              <div className="flex justify-center">
+                <Spinner />
+              </div>
             }
           >
-            <Suspense
-              fallback={
-                <div className="flex justify-center">
-                  <Spinner />
-                </div>
-              }
-            >
-              <div className="flex justify-center">
-                <Comments postId={id} />
-              </div>
-            </Suspense>
-          </ErrorBoundary>
-        )}
-      </li>
-    </>
+            <div className="flex justify-center">
+              <Comments postId={id} />
+            </div>
+          </Suspense>
+        </ErrorBoundary>
+      )}
+    </li>
   )
 }
+
 export const PostItem = memo(PostItemMemo)

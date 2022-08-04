@@ -6,14 +6,14 @@ import { NoticeForm } from './NoticeForm'
 
 export const Notification: FC = () => {
   const { data: notices } = useQueryNotices()
+  console.log(notices)
   useSubscribeNotices()
-
   return (
     <>
-      <p className="mb-4 text-center">Notification</p>
+      <p className="mb-4 text-center">notification</p>
       <NoticeForm />
-      <ul data-testid="ul-notice" className="my-5">
-        {notices?.map((notice) => (
+      <ul className="my-5" data-ul-notice>
+        {notices.map((notice) => (
           <NoticeItem
             key={notice.id}
             id={notice.id}

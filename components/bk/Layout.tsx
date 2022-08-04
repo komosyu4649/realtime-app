@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import { BadgeCheckIcon } from '@heroicons/react/solid'
 
@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode
 }
 
-export const Layout: FC<Props> = ({ children, title = 'Realtime App' }) => {
+export const Layout: FC<Props> = ({ children, title = 'realtime app' }) => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center font-mono text-gray-800">
       <Head>
